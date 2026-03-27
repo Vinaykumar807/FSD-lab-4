@@ -1,148 +1,68 @@
-# FSD Lab 4 - Counter & Task App
+# Backend Server
 
-A full-stack application built with React (frontend) and Node.js/Express (backend).
+Express.js backend API server for Counter and Task management applications.
 
-## Features
+## Installation
 
-### Counter App
-- ✅ Increment counter
-- ✅ Decrement counter
-- ✅ Reset counter to 0
-- ✅ Real-time updates from backend
-
-### Task Manager App
-- ✅ Add new tasks with title and description
-- ✅ View all tasks
-- ✅ Mark tasks as complete/incomplete
-- ✅ Edit existing tasks
-- ✅ Delete tasks
-- ✅ View task statistics (total, completed, pending)
-- ✅ Timestamps for each task
-
-## Project Structure
-
-```
-FSD lab 4/
-├── backend/
-│   ├── server.js          # Express server & API routes
-│   ├── package.json       # Backend dependencies
-│   └── README.md
-├── frontend/
-│   ├── src/
-│   │   ├── App.jsx        # Main app component
-│   │   ├── App.css        # App styling
-│   │   ├── Counter.jsx    # Counter component
-│   │   ├── Counter.css    # Counter styling
-│   │   ├── Tasks.jsx      # Tasks component
-│   │   ├── Tasks.css      # Tasks styling
-│   │   ├── api.js         # API service with axios
-│   │   ├── main.jsx       # Entry point
-│   │   └── index.css      # Global styles
-│   ├── index.html         # HTML template
-│   ├── package.json       # Frontend dependencies
-│   ├── vite.config.js     # Vite configuration
-│   └── README.md
-└── README.md
+```bash
+npm install
 ```
 
-## Installation & Setup
+## Running the Server
 
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
+### Development Mode (with auto-reload)
+```bash
+npm run dev
+```
 
-### Backend Setup
+### Production Mode
+```bash
+npm start
+```
 
-1. Navigate to backend directory:
-   ```bash
-   cd backend
-   ```
+The server will run on `http://localhost:5000`
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+## API Routes
 
-3. Start the backend server:
-   ```bash
-   npm run dev
-   ```
-
-   Backend will run on `http://localhost:5000`
-
-### Frontend Setup
-
-1. In a new terminal, navigate to frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-   Frontend will open on `http://localhost:3000`
-
-## API Endpoints
-
-### Counter Endpoints
+### Counter API
 - `GET /api/counter` - Get current counter value
-- `POST /api/counter/increment` - Increment counter
-- `POST /api/counter/decrement` - Decrement counter
+- `POST /api/counter/increment` - Increment counter by 1
+- `POST /api/counter/decrement` - Decrement counter by 1
 - `POST /api/counter/reset` - Reset counter to 0
-- `POST /api/counter/set` - Set counter to specific value
+- `POST /api/counter/set` - Set counter to specific value (requires JSON body with `value` field)
 
-### Task Endpoints
+### Task API
 - `GET /api/tasks` - Get all tasks
-- `POST /api/tasks` - Create new task
-- `PUT /api/tasks/:id` - Update task
+- `POST /api/tasks` - Create new task (requires JSON body with `title` and optional `description`)
+- `PUT /api/tasks/:id` - Update existing task
 - `PATCH /api/tasks/:id/toggle` - Toggle task completion status
-- `DELETE /api/tasks/:id` - Delete task
+- `DELETE /api/tasks/:id` - Delete a task
 
-## Technology Stack
+### Health Check
+- `GET /api/health` - Check if server is running
 
-**Backend:**
-- Node.js
-- Express.js
-- CORS
+## Dependencies
 
-**Frontend:**
-- React 18
-- Vite
-- Axios
-- CSS3
+- **express** - Web framework
+- **cors** - Enable cross-origin requests from frontend
 
-## Usage
+## Data Storage
 
-1. Once both servers are running, open your browser to `http://localhost:3000`
+- All data is stored in memory (non-persistent)
+- Data resets when server restarts
+- For production apps, consider adding a database
 
-2. **Counter App:**
-   - Click "+Increment" to increase counter
-   - Click "-Decrement" to decrease counter
-   - Click "🔄 Reset" to set counter to 0
+## Middleware
 
-3. **Task Manager App:**
-   - Enter task title and optional description
-   - Click "➕ Add Task" to create
-   - Check the checkbox to mark task as complete
-   - Click "✎ Edit" to modify a task
-   - Click "🗑 Delete" to remove a task
-   - View statistics at the top
+- CORS enabled for frontend communication
+- JSON body parser for request data
 
-## Future Enhancements
-- Add task categories/tags
-- Add due dates for tasks
-- Add task filtering/search
+## Future Improvements
+
+- Add input validation
+- Add error handling middleware
+- Add logging
+- Add database integration (MongoDB, PostgreSQL)
 - Add user authentication
-- Add database persistence (MongoDB/PostgreSQL)
-- Add dark mode toggle
-- Add task priority levels
-
-## License
-MIT
+- Add rate limiting
+- Add request logging
