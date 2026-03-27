@@ -1,6 +1,6 @@
-# Backend Server
+# Frontend Application
 
-Express.js backend API server for Counter and Task management applications.
+React.js frontend for Counter and Task management applications.
 
 ## Installation
 
@@ -8,61 +8,95 @@ Express.js backend API server for Counter and Task management applications.
 npm install
 ```
 
-## Running the Server
+## Running the Development Server
 
-### Development Mode (with auto-reload)
 ```bash
 npm run dev
 ```
 
-### Production Mode
+The application will open on `http://localhost:3000`
+
+## Building for Production
+
 ```bash
-npm start
+npm run build
 ```
 
-The server will run on `http://localhost:5000`
+The built files will be in the `dist` folder.
 
-## API Routes
+## Preview Production Build
 
-### Counter API
-- `GET /api/counter` - Get current counter value
-- `POST /api/counter/increment` - Increment counter by 1
-- `POST /api/counter/decrement` - Decrement counter by 1
-- `POST /api/counter/reset` - Reset counter to 0
-- `POST /api/counter/set` - Set counter to specific value (requires JSON body with `value` field)
-
-### Task API
-- `GET /api/tasks` - Get all tasks
-- `POST /api/tasks` - Create new task (requires JSON body with `title` and optional `description`)
-- `PUT /api/tasks/:id` - Update existing task
-- `PATCH /api/tasks/:id/toggle` - Toggle task completion status
-- `DELETE /api/tasks/:id` - Delete a task
-
-### Health Check
-- `GET /api/health` - Check if server is running
+```bash
+npm run preview
+```
 
 ## Dependencies
 
-- **express** - Web framework
-- **cors** - Enable cross-origin requests from frontend
+- **react** - UI library
+- **react-dom** - React DOM rendering
+- **axios** - HTTP client for API calls
+- **vite** - Build tool and dev server
 
-## Data Storage
+## Project Structure
 
-- All data is stored in memory (non-persistent)
-- Data resets when server restarts
-- For production apps, consider adding a database
+```
+src/
+├── App.jsx           # Main application component
+├── App.css           # Main application styles
+├── Counter.jsx       # Counter component
+├── Counter.css       # Counter styles
+├── Tasks.jsx         # Tasks manager component
+├── Tasks.css         # Tasks styles
+├── api.js            # API service with axios
+├── main.jsx          # React entry point
+└── index.css         # Global styles
 
-## Middleware
+index.html           # HTML template
+vite.config.js       # Vite configuration
+package.json         # Dependencies and scripts
+```
 
-- CORS enabled for frontend communication
-- JSON body parser for request data
+## Components
 
-## Future Improvements
+### Counter Component
+Manages a global counter with increment, decrement, and reset functionality. Communicates with the backend API.
 
-- Add input validation
-- Add error handling middleware
-- Add logging
-- Add database integration (MongoDB, PostgreSQL)
+### Tasks Component
+Manages a list of tasks with CRUD operations. Features include:
+- Add new tasks
+- Edit existing tasks
+- Mark tasks as complete/incomplete
+- Delete tasks
+- View task statistics
+
+### App Component
+Main application component that manages tab navigation between Counter and Tasks apps.
+
+## API Communication
+
+All API calls are made through the `api.js` service which uses axios. The base URL is `http://localhost:5000/api`
+
+## Features
+
+- ✅ Real-time data synchronization with backend
+- ✅ Responsive design for mobile and desktop
+- ✅ Beautiful gradient UI with smooth animations
+- ✅ Error handling and loading states
+- ✅ Tab-based navigation
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Future Enhancements
+
+- Add task categories/tags
+- Add task filtering and search
+- Add dark mode toggle
 - Add user authentication
-- Add rate limiting
-- Add request logging
+- Add local storage for offline support
+- Add drag-and-drop task reordering
+- Add task notifications
